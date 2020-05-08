@@ -154,6 +154,7 @@
 					</dependency>
 				</dependencies>
 				<configuration>
+					<reportsDirectory>${project.build.directory}/site/pit-reports</reportsDirectory>
 					<mutators>
 					  <mutator>DEFAULTS</mutator>
 					  <!-- NEW DEFAULTS -->
