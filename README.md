@@ -27,4 +27,4 @@ With this command three reports are generated:
 * `/target/site/jacoco/index.html` the report about coverage
 * `/target/site/pit-reports/yyyyMMddhhmm/index.html` the pit test coverage report (where _yyyyMMddhhmm_ indicates the timestamp of the report generation).
 
-The coverage report will show a **100% of line coverage** and **100% of brach coverage**, but a **65% of mutation coverage**
+The coverage report will show a **100% of line coverage** and **100% of brach coverage**, and **100% of mutation coverage** for stablished mutators. If mutator "ALL" was activated it would report **90% of mutation coverage**.
