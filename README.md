@@ -16,18 +16,15 @@ And go to the [Home page at http://localhost:8080](http://localhost:8080)
 
 In this branch, a test, and the required configuration for reporting, has been added in order to fullfill a minimun of 70% coverage required by the project specifications.
 
-To run tests and coverage report:
+To run all the reports configured:
 
 ```
 ./mvnw clean test site -DgenerateReports=false
 ```
 
-With this command two reports are generated:  
+With this command three reports are generated:  
 * `/target/site/surefire-report.html` the report about tests
 * `/target/site/jacoco/index.html` the report about coverage
+* `/target/site/pit-reports/yyyyMMddhhmm/index.html` the pit test coverage report (where _yyyyMMddhhmm_ indicates the timestamp of the report generation).
 
-The last one will be something like:
-
-<img width="100%" alt="informe-coverage-servicio" src="https://user-images.githubusercontent.com/64134043/81397468-af5bc300-9127-11ea-9398-ad9e08b34583.png">
-
-It assures a **92% of line coverage** and **87% of brach coverage**.
+The coverage report will show a **100% of line coverage** and **100% of brach coverage**, but a **65% of mutation coverage**
