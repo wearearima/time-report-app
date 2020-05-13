@@ -58,6 +58,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- Añadido para que funcione pitclipse con junit5 -->
+		 <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>0.12</version>
+            <scope>test</scope>
+          </dependency>
 	</dependencies>
 
 	<build>
