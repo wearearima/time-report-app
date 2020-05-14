@@ -119,12 +119,13 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>report</id>
+						<id>coverage-report</id>
 						<phase>test</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
 						<configuration>
+							<skip>${coverage-report.skip}</skip>
 							<includes>
 								<include>**/*ServiceImpl.*</include>
 								<include>**/*Repository.*</include>
@@ -139,7 +140,6 @@
 				<groupId>org.pitest</groupId>
 				<artifactId>pitest-maven</artifactId>
 				<version>1.5.1</version>
-
 				<executions>
 					<execution>
 						<id>pit-report</id>
@@ -148,6 +148,9 @@
 						<goals>
 							<goal>mutationCoverage</goal>
 						</goals>
+						<configuration>
+							<skip>${pit-report.skip}</skip>
+						</configuration>
 					</execution>
 				</executions>
 
