@@ -22,8 +22,8 @@ public class ReportsController {
 	private ReportsService reportsService;
 
 	@Autowired
-	public ReportsController(ReportsService informesService) {
-		this.reportsService = informesService;
+	public ReportsController(ReportsService reportsService) {
+		this.reportsService = reportsService;
 	}
 
 	@InitBinder
