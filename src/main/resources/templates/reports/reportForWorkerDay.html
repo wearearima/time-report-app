@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'informes')}">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'reports')}">
 
   <body>
 
@@ -12,11 +12,11 @@
    		<form action="#" th:action="@{/reports/report-worker-day}" th:object="${workerDayReportForm}" method="post">
 	   		<div class="row">
 		   		<div class="col-md-6 mb-3">
-		          <label for="usuario" th:text="#{worker.username}">Username</label>
+		          <label for="workerUserName" th:text="#{worker.username}">Username</label>
 		          <input type="text" th:field="*{workerUserName}" class="form-control"/>
 		        </div>
 		        <div class="col-md-6 mb-3">
-		            <label for="mes" th:text="#{day}">Date</label>
+		            <label for="date" th:text="#{day}">Date</label>
 		            <input type="date" th:field="*{date}" class="form-control">
 	          	</div>
 	          
