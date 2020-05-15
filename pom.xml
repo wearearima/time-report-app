@@ -99,41 +99,6 @@
 				</executions>
 			</plugin>
 
-
-			<!-- JaCoCo: test coverage -->
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.5</version>
-
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-						<configuration>
-							<includes>
-								<include>**/*ServiceImpl</include>
-								<include>**/*Repository</include>
-							</includes>
-						</configuration>
-					</execution>
-					<execution>
-						<id>coverage-report</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-						<configuration>
-							<skip>${coverage-report.skip}</skip>
-							<includes>
-								<include>**/*ServiceImpl.*</include>
-								<include>**/*Repository.*</include>
-							</includes>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			
 			<!-- PITest -->
 			<plugin>
