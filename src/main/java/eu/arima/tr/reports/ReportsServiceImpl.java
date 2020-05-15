@@ -13,7 +13,7 @@ import eu.arima.tr.workLogs.WorklogRepository;
 public class ReportsServiceImpl implements ReportsService {
 
 	@Autowired
-	private WorklogRepository parteRepository;
+	private WorklogRepository worklogRepository;
 
 	@Override
 	public DayStatusSummary getDayStatusSummaryForWorkerAndDay(String workerUserName, LocalDate date) {
@@ -21,7 +21,7 @@ public class ReportsServiceImpl implements ReportsService {
 		status.setDate(date);
 		status.setWorkerUserName(workerUserName);
 
-		List<Worklog> worklogsForDay = parteRepository.findByUsernameAndDate(workerUserName, date);
+		List<Worklog> worklogsForDay = worklogRepository.findByUsernameAndDate(workerUserName, date);
 		int totalDuration = 0;
 		for (Worklog worklog : worklogsForDay) {
 			totalDuration = totalDuration + worklog.getDuration();
