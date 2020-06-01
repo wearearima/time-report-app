@@ -58,13 +58,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- Añadido para que funcione pitclipse con junit5 -->
-		 <dependency>
-            <groupId>org.pitest</groupId>
-            <artifactId>pitest-junit5-plugin</artifactId>
-            <version>0.12</version>
-            <scope>test</scope>
-          </dependency>
 	</dependencies>
 
 	<build>
@@ -73,87 +66,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!-- Surefire: test configuration -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-			</plugin>
-			
-			<!-- Surefire: test report -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>3.0.0-M4</version>
-				<configuration>
-	                <linkXRef>false</linkXRef>
-	                <showSuccess>true</showSuccess>
-	            </configuration>
-				<executions>
-					<execution>
-						<id>report</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report-only</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			
-			<!-- PITest -->
-			<plugin>
-				<groupId>org.pitest</groupId>
-				<artifactId>pitest-maven</artifactId>
-				<version>1.5.1</version>
-				<executions>
-					<execution>
-						<id>pit-report</id>
-						<!-- optional, this example attached the goal into mvn test phase -->
-						<phase>test</phase>
-						<goals>
-							<goal>mutationCoverage</goal>
-						</goals>
-						<configuration>
-							<skip>${pit-report.skip}</skip>
-						</configuration>
-					</execution>
-				</executions>
-
-				<!-- https://github.com/hcoles/pitest/issues/284 -->
-				<!-- Need this to support JUnit 5 -->
-				<dependencies>
-					<dependency>
-						<groupId>org.pitest</groupId>
-						<artifactId>pitest-junit5-plugin</artifactId>
-						<version>0.12</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<reportsDirectory>${project.build.directory}/site/pit-reports</reportsDirectory>
-					<mutators>
-					  <mutator>DEFAULTS</mutator>
-					  <!-- NEW DEFAULTS -->
-					  <mutator>EMPTY_RETURNS</mutator>
-					  <mutator>FALSE_RETURNS</mutator>
-					  <mutator>NULL_RETURNS</mutator>
-					  <mutator>PRIMITIVE_RETURNS</mutator>
-					  <!-- STRONGER -->
-					  <mutator>REMOVE_CONDITIONALS</mutator>
-					  <!-- ALL -->
-					  <mutator>REMOVE_INCREMENTS</mutator>
-					  <mutator>AOD</mutator>
-					</mutators>
-					<targetClasses>
-						<param>**.*ServiceImpl</param>
-						<param>**.*Repository</param>
-					</targetClasses>
-					<targetTests>
-						<param>eu.arima.tr.*</param>
-					</targetTests>
-				</configuration>
-			</plugin>
 		</plugins>
-			
 	</build>
 
 </project>
