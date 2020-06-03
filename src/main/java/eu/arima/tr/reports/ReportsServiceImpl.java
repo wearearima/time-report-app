@@ -1,40 +1,42 @@
 package eu.arima.tr.reports;
 
+import eu.arima.tr.workLogs.Worklog;
+import eu.arima.tr.workLogs.WorklogRepository;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import eu.arima.tr.workLogs.Worklog;
-import eu.arima.tr.workLogs.WorklogRepository;
+import static eu.arima.tr.reports.DayStatus.*;
 
 @Service
-public class ReportsServiceImpl implements ReportsService {
+class ReportsServiceImpl implements ReportsService {
 
-	@Autowired
-	private WorklogRepository worklogRepository;
+	private final WorklogRepository worklogRepository;
+
+	public ReportsServiceImpl(WorklogRepository worklogRepository) {
+		this.worklogRepository = worklogRepository;
+	}
 
 	@Override
 	public DayStatusSummary getDayStatusSummaryForWorkerAndDay(String workerUserName, LocalDate date) {
-		DayStatusSummary status = new DayStatusSummary();
-		status.setDate(date);
-		status.setWorkerUserName(workerUserName);
 
-		List<Worklog> worklogsForDay = worklogRepository.findByUsernameAndDate(workerUserName, date);
-		int totalDuration = 0;
-		for (Worklog worklog : worklogsForDay) {
-			totalDuration = totalDuration + worklog.getDuration();
-		}
+		List<Worklog> worklogsForDay = this.worklogRepository.findByUsernameAndDate(workerUserName, date);
+
+		int totalDuration = worklogsForDay.stream()
+				.mapToInt(Worklog::getDuration)
+				.sum();
+
+		DayStatusSummary status = new DayStatusSummary(date, workerUserName);
+
 		if (totalDuration == 8) {
-			status.getStatusList().add(DayStatus.RIGHT_HOURS);
+			status.addDayStatus(RIGHT_HOURS);
+		} else if (totalDuration > 8) {
+			status.addDayStatus(EXTRA_HOURS);
+		} else {
+			status.addDayStatus(MISSING_HOURS);
 		}
-		if (totalDuration > 8) {
-			status.getStatusList().add(DayStatus.EXTRA_HOURS);
-		}
-		if (totalDuration < 8) {
-			status.getStatusList().add(DayStatus.MISSING_HOURS);
-		}
+
 		return status;
 	}
 
