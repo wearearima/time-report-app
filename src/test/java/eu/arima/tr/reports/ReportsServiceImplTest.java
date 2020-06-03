@@ -15,7 +15,7 @@ class ReportsServiceImplTest {
     @Test
     public void itWorks() {
         WorklogRepository worklogRepository = mock(WorklogRepository.class);
-        ReportsService reportsService = new ReportsServiceImpl(mock(WorklogRepository.class));
+        ReportsService reportsService = new ReportsServiceImpl(worklogRepository);
 
         String username = "test";
         LocalDate today = LocalDate.now();
