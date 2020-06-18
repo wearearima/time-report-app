@@ -62,8 +62,6 @@ public class GetDayStatusSummaryForWorkerAndDayTests {
 
 	@Test
 	public void if_the_sum_of_worklogs_for_the_resquested_day_is_less_than_8_hours_the_status_is_MISSING_HOURS() {
-		Worklog worklog = Mockito.mock(Worklog.class);
-		Mockito.when(worklog.getDuration()).thenReturn(7);
 		Mockito.when(worklogRepository.findByUsernameAndDate(ArgumentMatchers.anyString(),
 				ArgumentMatchers.any(LocalDate.class))).thenReturn(Arrays.asList(fiveHoursWorklog, oneHourWorklog));
 
@@ -98,8 +96,6 @@ public class GetDayStatusSummaryForWorkerAndDayTests {
 
 	@Test
 	public void if_the_worklog_for_the_resquested_day_is_more_than_8_hours_the_status_is_EXTRA_HOURS() {
-		Worklog worklog = Mockito.mock(Worklog.class);
-		Mockito.when(worklog.getDuration()).thenReturn(10);
 		Mockito.when(worklogRepository.findByUsernameAndDate(ArgumentMatchers.anyString(),
 				ArgumentMatchers.any(LocalDate.class))).thenReturn(Arrays.asList(tenHoursWorklog));
 
@@ -111,8 +107,6 @@ public class GetDayStatusSummaryForWorkerAndDayTests {
 
 	@Test
 	public void if_the_sum_of_worklogs_for_the_resquested_day_is_more_than_8_hours_the_status_is_EXTRA_HOURS() {
-		Worklog worklog = Mockito.mock(Worklog.class);
-		Mockito.when(worklog.getDuration()).thenReturn(10);
 		Mockito.when(worklogRepository.findByUsernameAndDate(ArgumentMatchers.anyString(),
 				ArgumentMatchers.any(LocalDate.class)))
 				.thenReturn(Arrays.asList(fiveHoursWorklog, fiveHoursWorklog, oneHourWorklog));
